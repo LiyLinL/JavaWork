@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liy.gradle.infrastructure.dao.Z_LABEL_PRINTERMapper">
+    <resultMap id="LabelBaseResultMap" type="com.liy.gradle.domain.entity.Z_LABEL_PRINTER">
+        <result column="HANDLE" jdbcType="VARCHAR" property="handle" />
+        <result column="SITE" jdbcType="VARCHAR" property="site" />
+        <result column="RAW_LABEL" jdbcType="VARCHAR" property="rawLabel" />
+        <result column="RESOURCE1" jdbcType="VARCHAR" property="resource1" />
+        <result column="PRINTER_NAME" jdbcType="VARCHAR" property="printerName" />
+        <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+        <result column="CREATE_DATE" jdbcType="DATE" property="createDate" />
+    </resultMap>
+</mapper>
