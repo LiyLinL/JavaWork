@@ -5,27 +5,27 @@ import com.alibaba.fastjson.JSONObject;
 import com.liy.gradle.application.service.Z_LABEL_PRINTERService;
 import com.liy.gradle.domain.entity.Z_LABEL_PRINTER;
 import com.liy.gradle.infrastructure.dao.Z_LABEL_PRINTERMapper;
-import com.liy.gradle.infrastructure.dao.repository.Z_LABEL_PRINTERRepository;
+import com.liy.gradle.infrastructure.repository.Z_LABEL_PRINTERRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.liy.gradle.infrastructure.util.DateUtil.*;
+import static com.liy.gradle.infrastructure.util.DateUtil.DatetoString;
 
 @Service
 public class Z_LABEL_PRINTERServiceImpl implements Z_LABEL_PRINTERService {
 
     @Autowired
-    private Z_LABEL_PRINTERRepository zLabelPrinterRepository;
+    private Z_LABEL_PRINTERRepository z_label_printerRepository;
 
     @Autowired
     Z_LABEL_PRINTERMapper z_label_printerMapper;
 
     @Override
     public List<Z_LABEL_PRINTER> selectAll() {
-        return z_label_printerMapper.selectAll();
+        return z_label_printerRepository.selectAll();
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Z_LABEL_PRINTERServiceImpl implements Z_LABEL_PRINTERService {
         JSONObject jso = new JSONObject();
         JSONArray jsonArray = new JSONArray();
 
-        List<Z_LABEL_PRINTER> list = zLabelPrinterRepository.selectAll();//z_label_printerMapper.selectPrint(z_label_printer);
+        List<Z_LABEL_PRINTER> list = z_label_printerMapper.selectPrint(z_label_printer);
         AtomicInteger i = new AtomicInteger(0);
         list.forEach( z ->{
             JSONObject js = new JSONObject();

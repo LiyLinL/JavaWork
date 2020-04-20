@@ -1,8 +1,8 @@
-package com.liy.gradle.infrastructure.dao.repository.impl;
+package com.liy.gradle.infrastructure.repository.impl;
 
 import com.liy.gradle.domain.entity.Z_LABEL_PRINTER;
 import com.liy.gradle.infrastructure.dao.Z_LABEL_PRINTERMapper;
-import com.liy.gradle.infrastructure.dao.repository.Z_LABEL_PRINTERRepository;
+import com.liy.gradle.infrastructure.repository.Z_LABEL_PRINTERRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

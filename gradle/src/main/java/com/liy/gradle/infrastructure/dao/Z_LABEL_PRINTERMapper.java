@@ -3,12 +3,9 @@ package com.liy.gradle.infrastructure.dao;
 import com.liy.gradle.domain.entity.Z_LABEL_PRINTER;
 import com.liy.gradle.infrastructure.util.SqlUtil;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
-@Repository
 public interface Z_LABEL_PRINTERMapper {
 
     @Select(value = "select * from Z_LABEL_PRINTER")

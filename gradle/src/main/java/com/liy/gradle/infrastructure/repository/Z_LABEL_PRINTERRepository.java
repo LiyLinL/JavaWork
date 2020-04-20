@@ -1,4 +1,4 @@
-package com.liy.gradle.infrastructure.dao.repository;
+package com.liy.gradle.infrastructure.repository;
 
 import com.liy.gradle.domain.entity.Z_LABEL_PRINTER;
 
