@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.13.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.liy'
+version = 'v1.0'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+configurations {
+	jaxb
+}
+
+task genJaxb {
+	ext.sourcesDir = "${rootDir}/src/main/java"
+	ext.schema = "http://localhost:8080/ws/countries.wsdl"
+	ext.pkg = "ws"
+
+	doLast() {
+		project.ant {
+			taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
+					classpath: configurations.jaxb.asPath
+			mkdir(dir: sourcesDir)
+
+			xjc(destdir: sourcesDir,
+					schema: schema,
+					package: pkg) {
+				arg(value: "-wsdl")
+			}
+		}
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	compile group: 'wsdl4j', name: 'wsdl4j', version: '1.6.1'
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.58'
+	jaxb("org.glassfish.jaxb:jaxb-xjc:2.2.11")
+}
