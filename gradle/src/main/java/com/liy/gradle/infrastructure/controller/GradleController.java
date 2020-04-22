@@ -24,7 +24,7 @@ public class GradleController {
 
     @RequestMapping(value = "/gradle")
     public String index(@RequestParam(value = "index", defaultValue = "Hello") String i) {
-        System.out.println(i);
+        System.out.println(i + " hahahaha ");
         return "index";
     }
 
