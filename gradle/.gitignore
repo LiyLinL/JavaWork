@@ -9,6 +9,7 @@
 build
 target
 gradle
+rebel.xml
 
 # IntelliJ project files
 .idea
