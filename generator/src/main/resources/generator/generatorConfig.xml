@@ -6,10 +6,8 @@
         >
 <generatorConfiguration>
     <properties resource="config/generatorConfig.properties"/>
-    <!-- 制定数据库的驱动包的路径 千万别放中文路径下 -->
-    <classPathEntry location="${generatorConfig.jdbc.location}" />
     <!-- 配置数据源和生成的代码所存放的位置 -->
-    <context id="context1">
+    <context id="context">
         <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
         <property name="javaFileEncoding" value="UTF-8"/>
         <!-- 使用自定义的插件 -->
@@ -18,9 +16,7 @@
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
-        <!--使用自定义插件-->
-        <!--<commentGenerator type="com.xiepanpan.ecps.utils.MyCommentGenerator"></commentGenerator>-->
-        <!--这里需要大佬们修改成自己的-->
+        <!-- jdbc -->
         <jdbcConnection driverClass="${generatorConfig.driverClass}"
                         connectionURL="${generatorConfig.connectionURL}" userId="${generatorConfig.user}"
                         password="${generatorConfig.passwd}" >
@@ -28,7 +24,6 @@
             <property name="remarksReporting" value="true"></property>
             <!--支持mybatis获取注释-->
             <property name="useInformationSchema" value="true"/>
-
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -38,20 +33,16 @@
         <!-- dto class -->
         <javaModelGenerator targetPackage="${generatorConfig.entity}"
                             targetProject="src/main/java">
-            <property name="enableSubPackages" value="true" />
-            <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!-- mybatis xml file -->
         <sqlMapGenerator targetPackage="mapper"
                          targetProject="src/main/resources">
-            <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- mapper class -->
         <javaClientGenerator type="XMLMAPPER"
                              targetPackage="${generatorConfig.mapper}" targetProject="src/main/java">
-            <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
 
@@ -59,10 +50,8 @@
         <!-- enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
             enableSelectByExample="false" selectByExampleQueryId="false" -->
         <!--已生成的表 <table schema="demo" tableName="USER" domainObjectName="User"></table> -->
-        <table schema="" tableName="${generatorConfig.table}" domainObjectName="${generatorConfig.domainObjName}"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <table tableName="${generatorConfig.table}">
+            <property name="modelOnly" value="false"/>
         </table>
     </context>
 </generatorConfiguration>
