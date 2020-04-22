@@ -4,7 +4,7 @@
 
 !**/src/main/**
 
-# gradle & target & build
+# gradle & target & build & Jrebel
 .gradle
 build
 target
