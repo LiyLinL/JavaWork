@@ -6,6 +6,7 @@ mvnw
 !**/src/main/**
 !**/src/test/**
 !**/resources/**
+rebel.xml
 
 ### STS ###
 .apt_generated
