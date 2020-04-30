@@ -4,11 +4,11 @@ import com.liy.gradle.domain.entity.Z_LABEL_PRINTER;
 import com.liy.gradle.infrastructure.dao.Z_LABEL_PRINTERMapper;
 import com.liy.gradle.infrastructure.repository.Z_LABEL_PRINTERRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Repository
+@Component
 public class Z_LABEL_PRINTERRepositoryImpl implements Z_LABEL_PRINTERRepository {
 
     @Autowired
