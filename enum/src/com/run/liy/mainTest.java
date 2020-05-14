@@ -44,7 +44,7 @@ public class mainTest {
             cal.add(Calendar.DATE, -7);
 //            System.out.println(cal.getTime());
         }
-        Test();
+        String serNo = serNoProcess(1000);
     }
 
     public static Date getThisWeekMonday(Date date) {
@@ -60,73 +60,78 @@ public class mainTest {
         return cal.getTime();
     }
 
-    public static void Test() {
-        String a = "AXA53450001ABCDA";
-        char[] c = a.toCharArray();
+    public static void process(String s) {
+        char[] c = s.toCharArray();
         int k = 0;
         for (int i = 1; c.length > i; i += 2) {
-            k += rt(c[i]);
+            k += textToNo(c[i]);
         }
-        System.out.println(k*3);
         int t = 0;
         for (int i = 0; c.length > i; i += 2) {
-            t += rt(c[i]);
+            t += textToNo(c[i]);
         }
-        System.out.println(t);
+        int a = k * 3;
+        int d = (a + t) % 34;
+        int f = 34 - d;
     }
 
-    public static int rt(char a) {
-        switch (a) {
-            case 'A':
-                return 10;
-            case 'B':
-                return 11;
-            case 'C':
-                return 12;
-            case 'D':
-                return 13;
-            case 'E':
-                return 14;
-            case 'F':
-                return 15;
-            case 'G':
-                return 16;
-            case 'H':
-                return 17;
-            case 'J':
-                return 18;
-            case 'K':
-                return 19;
-            case 'L':
-                return 20;
-            case 'M':
-                return 21;
-            case 'N':
-                return 22;
-            case 'P':
-                return 23;
-            case 'Q':
-                return 24;
-            case 'R':
-                return 25;
-            case 'S':
-                return 26;
-            case 'T':
-                return 27;
-            case 'U':
-                return 28;
-            case 'V':
-                return 29;
-            case 'W':
-                return 30;
-            case 'X':
-                return 31;
-            case 'Y':
-                return 32;
-            case 'Z':
-                return 33;
-            default:
-                return Integer.parseInt(String.valueOf(a));
+    public static int textToNo(char c) {
+        int i = (int) c;
+        if (i <= 57) {
+            return Integer.parseInt(String.valueOf(c));
         }
+        if (i < 72) {
+            i -= 55;
+            return i;
+        }
+        if (i >= 73 && i < 79) { // 跳過 I,所以多減1
+            i -= 56;
+            return i;
+        }
+        if (i >= 79) { // 跳過 O,所以多減2
+            i -= 57;
+            return i;
+        }
+        return i;
+    }
+
+    public static String noToText(int i) {
+        if (i < 9) {
+            return String.valueOf(i);
+        }
+        if (i > 9) {
+            i += 55;
+        }
+        if (i > 72 && i < 79) { // 跳過 I
+            i += 1;
+        }
+        if (i >= 79) { // 跳過 O
+            i += 2;
+        }
+        char c = (char) i;
+        return String.valueOf(c);
+    }
+
+    private static String serNoProcess(int seq) {
+        int uni = seq % 34; // 個位
+        int ten = 0; // 十位
+        int hun = 0; // 百位
+        int thu = 0; // 千位
+
+        int exc1 = seq / 34;
+        if (exc1 > 0) {
+            ten = exc1 % 34;
+
+            int exc2 = exc1 / 34;
+            if (exc2 > 0) {
+                hun = exc2 % 34;
+
+                int exc3 = exc2 / 34;
+                if (exc3 > 0) {
+                    thu = exc3 % 34;
+                }
+            }
+        }
+        return String.format("%s%s%s%s", noToText(thu), noToText(hun), noToText(ten), noToText(uni));
     }
 }
