@@ -37,12 +37,10 @@ public class mainTest {
         Calendar cal = Calendar.getInstance();
         cal.setFirstDayOfWeek(Calendar.MONDAY);
         int w = cal.get(Calendar.WEEK_OF_YEAR);
-//        System.out.println(w);
         if (w % 2 != 0) {
             Date one = getThisWeekMonday(cal.getTime());
             cal.setTime(one);
             cal.add(Calendar.DATE, -7);
-//            System.out.println(cal.getTime());
         }
         String serNo = serNoProcess(1000);
     }
