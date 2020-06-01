@@ -1,9 +1,19 @@
 package com.liy.generator;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.io.*;
 import java.util.Arrays;
@@ -14,6 +24,12 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GeneratorApplicationTests {
+
+    @Autowired
+    private WebApplicationContext wac;
+
+    private MockMvc mvc;
+    private MockHttpSession session;
 
     @Test
     public void test() throws IOException {
@@ -65,5 +81,23 @@ public class GeneratorApplicationTests {
                 }
             }
         });
+    }
+
+    @Before
+    public void setupMockMvc() {
+        mvc = MockMvcBuilders.webAppContextSetup(wac).build(); //初始化MockMvc对象
+        session = new MockHttpSession();
+    }
+
+    @Test
+    public void testController() throws Exception {
+        // perform执行一个请求
+        mvc.perform(MockMvcRequestBuilders.get("/test") // 請求方法
+                    .contentType(MediaType.ALL) // 發送數據格式
+                    .accept(MediaType.ALL_VALUE) // 接收數據格式
+                    .session(session) // session
+            )
+            .andExpect(MockMvcResultMatchers.status().isOk()) // 请求的状态响应是否为200，如果不是则抛异常
+            .andDo(MockMvcResultHandlers.print()); // 结果处理，输出整个响应结果信息
     }
 }
