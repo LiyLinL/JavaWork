@@ -1,7 +1,7 @@
 package com.run.liy;
 
 public class main {
-//    private static String to = "vip860180@gmail.com";
+    //    private static String to = "vip860180@gmail.com";
 //
 //    private static String from = "vip860180@gmail.com";
 //
@@ -11,7 +11,7 @@ public class main {
 //
 //    private static String host = "smtp.gmail.com";
     // for test something
-    public static void main(String[] args) {
+    public static void main( String[] args ) throws Exception {
 //        Properties properties = System.getProperties();
 //        properties.setProperty("mail.transport.protocol", "smtp");
 //        properties.setProperty("mail.smtp.host", host);
