@@ -60,6 +60,11 @@ public class GeneratorApplicationTests {
                             bw.write(";\n");
                             bw.flush();
                             br.close();
+
+                            StringBuffer p1 = new StringBuffer(tempFile.getAbsolutePath()).append("\\").append(nextFileList[k]);
+                            StringBuffer p2 = new StringBuffer(tempFile.getAbsolutePath()).append("\\").append(fileList[i]).append(".sql");
+                            new File(p1.toString()).renameTo(new File(p2.toString()));
+
                             break;
                         }
                     }
@@ -93,11 +98,11 @@ public class GeneratorApplicationTests {
     public void testController() throws Exception {
         // perform执行一个请求
         mvc.perform(MockMvcRequestBuilders.get("/test") // 請求方法
-                    .contentType(MediaType.ALL) // 發送數據格式
-                    .accept(MediaType.ALL_VALUE) // 接收數據格式
-                    .session(session) // session
-            )
-            .andExpect(MockMvcResultMatchers.status().isOk()) // 请求的状态响应是否为200，如果不是则抛异常
-            .andDo(MockMvcResultHandlers.print()); // 结果处理，输出整个响应结果信息
+                .contentType(MediaType.ALL) // 發送數據格式
+                .accept(MediaType.ALL_VALUE) // 接收數據格式
+                .session(session) // session
+        )
+                .andExpect(MockMvcResultMatchers.status().isOk()) // 请求的状态响应是否为200，如果不是则抛异常
+                .andDo(MockMvcResultHandlers.print()); // 结果处理，输出整个响应结果信息
     }
 }

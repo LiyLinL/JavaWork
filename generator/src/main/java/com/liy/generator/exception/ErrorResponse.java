@@ -1,8 +1,17 @@
 package com.liy.generator.exception;
 
+/* Lombok
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+*/
 public class ErrorResponse {
 
     private String msg;
+
+    public ErrorResponse() {
+    }
 
     public ErrorResponse( String msg ) {
         this.msg = msg;
