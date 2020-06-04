@@ -6,7 +6,7 @@ mvnw
 !**/src/main/**
 !**/src/test/**
 !**/resources/**
-**/src/main/resources/sapui5-1.60
+
 rebel.xml
 
 ### STS ###
@@ -32,3 +32,4 @@ rebel.xml
 /nbdist/
 /.nb-gradle/
 build/
+/src/main/resources/static/sapui5-1.60/
