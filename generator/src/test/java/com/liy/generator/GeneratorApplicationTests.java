@@ -58,7 +58,7 @@ public class GeneratorApplicationTests {
     }
 
     public static void create( String path, String pathC ) throws IOException {
-        String createPath = pathC.replaceAll("\\\\\\w*\\.sql","");
+        String createPath = pathC.replaceAll("\\\\\\w*\\.\\w*","");
         File cPath = new File(createPath);
         if (!cPath.exists()) { // Check資料夾存在
             cPath.mkdirs();
