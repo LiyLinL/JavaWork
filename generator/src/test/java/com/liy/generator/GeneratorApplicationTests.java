@@ -39,15 +39,41 @@ public class GeneratorApplicationTests {
     private MockHttpSession session;
 
     @Test
-    public void create() throws IOException {
-        FileWriter fw = new FileWriter("C:\\Users\\Administrator\\Desktop\\sql\\create.sql"); // write in here
+    public void goPath() {
+        String zPath = "C:\\Users\\Administrator\\Desktop\\Z\\index\\YO\\Z_";
+        String vPath = "C:\\Users\\Administrator\\Desktop\\V\\export\\YO\\VI";
+        String zCreate = "C:\\Users\\Administrator\\Desktop\\sql\\Zcreate.sql";
+        String vCreate = "C:\\Users\\Administrator\\Desktop\\sql\\Vcreate.sql";
+
+        Map<String, String> map = new HashMap<>();
+        map.put(zPath, zCreate);
+        map.put(vPath, vCreate);
+        map.forEach((k,v)->{
+            try {
+                create(k,v);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public static void create( String path, String pathC ) throws IOException {
+        String createPath = pathC.replaceAll("\\\\\\w*\\.sql","");
+        File cPath = new File(createPath);
+        if (!cPath.exists()) { // Check資料夾存在
+            cPath.mkdirs();
+        }
+        File create = new File(pathC);
+        if (!create.exists()) { // Check檔案存在
+            create.createNewFile();
+        }
+        FileWriter fw = new FileWriter(pathC); // write in here
         BufferedWriter bw = new BufferedWriter(fw);
 
-        String path = "C:\\Users\\Administrator\\Desktop\\sql"; // 必須把Z_*文件夾放到這層下
-        File file = new File(path);
-        String fullpath = file.getAbsolutePath();
         String[] fileList;
         String[] nextFileList;
+        File file = new File(path);
+        String fullpath = file.getAbsolutePath();
 
         if (file.isDirectory()) {
             fileList = file.list();
@@ -83,7 +109,7 @@ public class GeneratorApplicationTests {
         }
     }
 
-    public void asc( String[] strs, boolean asc ) {
+    public static void asc( String[] strs, boolean asc ) {
         List<String> fileList = Arrays.asList(strs);
         Collections.sort(fileList, new Comparator<String>() {
             @Override
