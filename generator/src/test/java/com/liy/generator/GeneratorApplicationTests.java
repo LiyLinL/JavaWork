@@ -1,5 +1,13 @@
 package com.liy.generator;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,13 +21,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.net.URI;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,11 +39,11 @@ public class GeneratorApplicationTests {
     private MockHttpSession session;
 
     @Test
-    public void test() throws IOException {
-        FileWriter fw = new FileWriter("C:\\Users\\Administrator\\Desktop\\sql\\create.sql");
+    public void create() throws IOException {
+        FileWriter fw = new FileWriter("C:\\Users\\Administrator\\Desktop\\sql\\create.sql"); // write in here
         BufferedWriter bw = new BufferedWriter(fw);
 
-        String path = "C:\\Users\\Administrator\\Desktop\\sql";
+        String path = "C:\\Users\\Administrator\\Desktop\\sql"; // 必須把Z_*文件夾放到這層下
         File file = new File(path);
         String fullpath = file.getAbsolutePath();
         String[] fileList;
@@ -54,15 +61,17 @@ public class GeneratorApplicationTests {
                             FileReader fr = new FileReader(tempFile + "\\" + nextFileList[k]);
                             BufferedReader br = new BufferedReader(fr);
                             while (br.ready()) {
-                                bw.write(br.readLine());
+                                String line = br.readLine();
+                                line = line.contains("\"YO\"") ? line.replace("\"YO\"", "\"WIP\"") : line;
+                                bw.write(line + "\n");
                                 bw.flush();
                             }
                             bw.write(";\n");
                             bw.flush();
                             br.close();
-
+                            // Create.sql rename to Z_*.sql
                             StringBuffer p1 = new StringBuffer(tempFile.getAbsolutePath()).append("\\").append(nextFileList[k]);
-                            StringBuffer p2 = new StringBuffer(tempFile.getAbsolutePath()).append("\\").append(fileList[i]).append(".sql");
+                            StringBuffer p2 = new StringBuffer("C:\\Users\\Administrator\\Desktop\\sql\\").append(fileList[i]).append(".sql");
                             new File(p1.toString()).renameTo(new File(p2.toString()));
 
                             break;
@@ -102,7 +111,61 @@ public class GeneratorApplicationTests {
                 .accept(MediaType.ALL_VALUE) // 接收數據格式
                 .session(session) // session
         ).andExpect(MockMvcResultMatchers.status().isOk()) // 请求的状态响应是否为200，如果不是则抛异常
-        .andDo(MockMvcResultHandlers.print()) // 结果处理，输出整个响应结果信息
-        .andReturn();
+                .andDo(MockMvcResultHandlers.print()) // 结果处理，输出整个响应结果信息
+                .andReturn();
+    }
+
+    @Test
+    public void rest() throws JSONException, IOException {
+        RestTemplate restTemplate = new RestTemplate();
+//        try {
+//            ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8088/del", String.class);
+//            System.out.println(response);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+
+        class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
+            public static final String METHOD_NAME = "DELETE";
+
+            @SuppressWarnings("unused")
+            public HttpDeleteWithBody() {
+            }
+
+            @SuppressWarnings("unused")
+            public HttpDeleteWithBody( URI uri ) {
+                setURI(uri);
+            }
+
+            public HttpDeleteWithBody( String uri ) {
+                setURI(URI.create(uri));
+            }
+
+            public String getMethod() {
+                return METHOD_NAME;
+            }
+        }
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpDeleteWithBody httpDelete = new HttpDeleteWithBody("http://localhost:8088/del");
+        JSONObject jsonObject = new JSONObject();
+        JSONArray array = new JSONArray();
+        array.put("A");
+        array.put("B");
+        jsonObject.put("list", array);
+
+        System.out.println(jsonObject.toString());
+
+        StringEntity param = new StringEntity(jsonObject.toString(), "UTF-8");
+        param.setContentEncoding("UTF-8");
+        httpDelete.setEntity(param);
+        httpDelete.addHeader("Content-Type", "application/json;charset=UTF-8");
+        httpDelete.addHeader("X-Requested-With", "XMLHttpRequest");
+
+        CloseableHttpResponse response = httpClient.execute(httpDelete);
+
+        if (response.getStatusLine().getStatusCode() != 200) {
+            System.out.println(response.getStatusLine().getStatusCode());
+        }
     }
 }
