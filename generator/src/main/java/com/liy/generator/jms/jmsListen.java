@@ -13,12 +13,12 @@ public class jmsListen {
 
     @Bean
     public JmsListenerContainerFactory<?> jmsListenerContainerQueue() {
-        DefaultJmsListenerContainerFactory bean = new DefaultJmsListenerContainerFactory();
+        DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setBrokerURL("tcp://localhost:61616");
         connectionFactory.setPassword("admin");
         connectionFactory.setUserName("admin");
-        bean.setConnectionFactory(connectionFactory);
-        return bean;
+        factory.setConnectionFactory(connectionFactory);
+        return factory;
     }
 }
