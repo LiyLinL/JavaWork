@@ -48,9 +48,9 @@ public class GeneratorApplicationTests {
         Map<String, String> map = new HashMap<>();
         map.put(zPath, zCreate);
         map.put(vPath, vCreate);
-        map.forEach((k,v)->{
+        map.forEach(( k, v ) -> {
             try {
-                create(k,v);
+                create(k, v);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -58,7 +58,7 @@ public class GeneratorApplicationTests {
     }
 
     public static void create( String path, String pathC ) throws IOException {
-        String createPath = pathC.replaceAll("\\\\\\w*\\.\\w*","");
+        String createPath = pathC.replaceAll("\\\\\\w*\\.\\w*", "");
         File cPath = new File(createPath);
         if (!cPath.exists()) { // Check資料夾存在
             cPath.mkdirs();
@@ -193,5 +193,13 @@ public class GeneratorApplicationTests {
         if (response.getStatusLine().getStatusCode() != 200) {
             System.out.println(response.getStatusLine().getStatusCode());
         }
+    }
+
+    @Autowired
+    private jmsService jmsService;
+
+    @Test
+    public void jms() throws InterruptedException {
+        System.out.println(jmsService.sendMessage("Q", "Test:" + UUID.randomUUID().toString().replaceAll("-","")));
     }
 }
