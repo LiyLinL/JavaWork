@@ -1,4 +1,4 @@
-package com.liy.generator;
+package com.liy.generator.jms;
 
 import org.apache.activemq.command.ActiveMQTextMessage;
 import org.springframework.jms.annotation.JmsListener;
@@ -10,8 +10,8 @@ import javax.jms.JMSException;
 public class jmsConsumer {
 
     @JmsListener(destination = "Q", containerFactory = "jmsListenerContainerQueue")
-    public String consumerMessage( ActiveMQTextMessage text) throws JMSException {
+    public void consumerMessage( ActiveMQTextMessage text) throws JMSException {
         System.out.println(text.getText());
-        return "test123return message";
+//        return "test123return message";
     }
 }

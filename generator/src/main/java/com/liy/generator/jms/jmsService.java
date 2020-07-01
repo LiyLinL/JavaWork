@@ -1,4 +1,4 @@
-package com.liy.generator;
+package com.liy.generator.jms;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;

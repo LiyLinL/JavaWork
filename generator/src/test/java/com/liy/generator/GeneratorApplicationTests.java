@@ -1,5 +1,6 @@
 package com.liy.generator;
 
+import com.liy.generator.jms.jmsService;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.entity.StringEntity;
@@ -34,6 +35,9 @@ public class GeneratorApplicationTests {
 
     @Autowired
     private WebApplicationContext wac;
+
+    @Autowired
+    private jmsService jmsService;
 
     private MockMvc mvc;
     private MockHttpSession session;
@@ -194,9 +198,6 @@ public class GeneratorApplicationTests {
             System.out.println(response.getStatusLine().getStatusCode());
         }
     }
-
-    @Autowired
-    private jmsService jmsService;
 
     @Test
     public void jms() throws InterruptedException {

@@ -1,20 +1,23 @@
-package com.liy.generator;
+package com.liy.generator.jms;
 
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 
-import javax.jms.ConnectionFactory;
-
 @Configuration
 @EnableJms
 public class jmsListen {
 
     @Bean
-    public JmsListenerContainerFactory<?> jmsListenerContainerQueue( ConnectionFactory connectionFactory) {
+    public JmsListenerContainerFactory<?> jmsListenerContainerQueue() {
         DefaultJmsListenerContainerFactory bean = new DefaultJmsListenerContainerFactory();
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+        connectionFactory.setBrokerURL("tcp://localhost:61616");
+        connectionFactory.setPassword("admin");
+        connectionFactory.setUserName("admin");
         bean.setConnectionFactory(connectionFactory);
         return bean;
     }
