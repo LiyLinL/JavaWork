@@ -13,6 +13,17 @@ import javax.jms.Destination;
 public class jmsService {
 
     public Object sendMessage( String qName, String message ) {
+        JmsMessagingTemplate jmsMessagingTemplate = jMessageTemplate();
+        Destination destination = new ActiveMQQueue(qName);
+        return jmsMessagingTemplate.convertSendAndReceive(destination, message, Object.class);
+    }
+
+    public void sendTemp( Destination destination, String message ) {
+        JmsMessagingTemplate jmsMessagingTemplate = jMessageTemplate();
+        jmsMessagingTemplate.convertAndSend(destination, message);
+    }
+
+    private JmsMessagingTemplate jMessageTemplate() {
         JmsMessagingTemplate jmsMessagingTemplate = new JmsMessagingTemplate();
         JmsTemplate jmsTemplate = new JmsTemplate();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
@@ -24,7 +35,6 @@ public class jmsService {
         jmsTemplate.setReceiveTimeout(10000);
         jmsTemplate.setPubSubDomain(false);
         jmsMessagingTemplate.setJmsTemplate(jmsTemplate);
-        Destination destination = new ActiveMQQueue(qName);
-        return jmsMessagingTemplate.convertSendAndReceive(destination, message, Object.class);
+        return jmsMessagingTemplate;
     }
 }
