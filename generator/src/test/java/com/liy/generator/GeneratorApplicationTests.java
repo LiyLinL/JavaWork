@@ -1,5 +1,8 @@
 package com.liy.generator;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.liy.generator.entity.Jackson;
 import com.liy.generator.jms.jmsService;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
@@ -202,5 +205,16 @@ public class GeneratorApplicationTests {
     @Test
     public void jms() throws InterruptedException {
         System.out.println(jmsService.sendMessage("Q", "Test:" + UUID.randomUUID().toString().replaceAll("-","")));
+    }
+
+    @Test
+    public void jackson() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Jackson jackson = new Jackson();
+        jackson.setSome("AAAA");
+
+        String json = objectMapper.writeValueAsString(jackson);
+        Map<String, String> map = objectMapper.readValue(json, new TypeReference<Map<String, String>>(){});
     }
 }
