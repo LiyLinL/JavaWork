@@ -125,7 +125,7 @@
                 <filtering>true</filtering>
                 <directory>src/main/resources</directory>
                 <excludes>
-                    <exclude>static/sapui5-1.60/**</exclude>
+<!--                    <exclude>static/sapui5-1.60/**</exclude>-->
                 </excludes>
             </resource>
         </resources>

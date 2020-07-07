@@ -204,7 +204,7 @@ public class GeneratorApplicationTests {
 
     @Test
     public void jms() throws InterruptedException {
-        System.out.println(jmsService.sendMessage("Q", "Test:" + UUID.randomUUID().toString().replaceAll("-","")));
+        System.out.println(jmsService.sendMessage("Q", "Test:" + UUID.randomUUID().toString().replaceAll("-", "")));
     }
 
     @Test
@@ -215,6 +215,7 @@ public class GeneratorApplicationTests {
         jackson.setSome("AAAA");
 
         String json = objectMapper.writeValueAsString(jackson);
-        Map<String, String> map = objectMapper.readValue(json, new TypeReference<Map<String, String>>(){});
+        Map<String, String> map = objectMapper.readValue(json, new TypeReference<Map<String, String>>() {
+        });
     }
 }
