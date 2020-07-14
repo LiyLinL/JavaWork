@@ -215,6 +215,7 @@ public class GeneratorApplicationTests {
         jackson.setSome("AAA");
 
         String json = objectMapper.writeValueAsString(jackson);
-        Map<String, String> map = objectMapper.readValue(json, new TypeReference<Map<String, String>>() {});
+        Map<String, String> map = objectMapper.readValue(json, new TypeReference<Map<String, String>>() {
+        });
     }
 }
