@@ -4,5 +4,4 @@
 
 ---
 ## Spring boot
-see [generator]
-(https://github.com/LiyLinL/JavaWork/tree/master/generator)
+see [generator](https://github.com/LiyLinL/JavaWork/tree/master/generator)
