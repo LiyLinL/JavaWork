@@ -17,6 +17,8 @@ public class SfcRepositoryImpl implements SfcRepository {
     @Override
     public List<Sfc> selectSfc() {
         SfcExample example = new SfcExample();
+        example.createCriteria().andSiteEqualTo("1000")
+                .andShopOrderBoEqualTo("ShopOrderBO:1000,J200417A");
         return sfcMapper.selectByExample(example);
     }
 }
