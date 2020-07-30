@@ -15,10 +15,18 @@ public class SfcRepositoryImpl implements SfcRepository {
     private SfcMapper sfcMapper;
 
     @Override
-    public List<Sfc> selectSfc() {
+    public List<Sfc> selectSfc( String site, String shopOrder, int firstRow, int lastRow ) {
         SfcExample example = new SfcExample();
-        example.createCriteria().andSiteEqualTo("1000")
-                .andShopOrderBoEqualTo("ShopOrderBO:1000,J200417A");
+        example.createCriteria().andSiteEqualTo(site)
+                .andShopOrderBoEqualTo(shopOrder);
+        return sfcMapper.selectByExamplePage(example, firstRow, lastRow);
+    }
+
+    @Override
+    public int cnt( String site, String shopOrde ) {
+        SfcExample example = new SfcExample();
+        example.createCriteria().andSiteEqualTo(site)
+                .andShopOrderBoEqualTo(shopOrde);
         return sfcMapper.selectByExample(example);
     }
 }

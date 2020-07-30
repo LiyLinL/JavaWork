@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <script src="http://localhost:90/sapui5-1.60/resources/sap-ui-core.js" id="sap-ui-bootstrap" data-sap-ui-libs="sap.m"
+    data-sap-ui-theme="sap_belize" data-sap-ui-xx-bindingsyntax="complex"></script>
+  <script>
+    sap.ui.getCore().attachInit(function () {
+      sap.ui.localResources('view'); //get access to view folder
+
+      var app = new sap.m.App({
+        initialPage: 'Main',
+      });
+
+      var page = sap.ui.view({
+        id: 'Main',
+        viewName: 'view.Main',
+        type: sap.ui.core.mvc.ViewType.XML,
+      });
+
+      app.addPage(page);
+      app.placeAt('content');
+    });
+  </script>
+</head>
+
+<body class="sapUiBody" role="application">
+  <div id="content"></div>
+</body>
+
+</html>

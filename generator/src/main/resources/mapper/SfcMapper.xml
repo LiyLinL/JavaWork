@@ -1,461 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.liy.generator.mapper.SfcMapper">
-  <resultMap id="BaseResultMap" type="com.liy.generator.entity.Sfc">
-    <result column="HANDLE" jdbcType="VARCHAR" property="handle" />
-    <result column="CHANGE_STAMP" jdbcType="DECIMAL" property="changeStamp" />
-    <result column="SITE" jdbcType="VARCHAR" property="site" />
-    <result column="SFC" jdbcType="VARCHAR" property="sfc" />
-    <result column="STATUS_BO" jdbcType="VARCHAR" property="statusBo" />
-    <result column="SHOP_ORDER_BO" jdbcType="VARCHAR" property="shopOrderBo" />
-    <result column="QTY" jdbcType="DECIMAL" property="qty" />
-    <result column="QTY_DONE" jdbcType="DECIMAL" property="qtyDone" />
-    <result column="QTY_SCRAPPED" jdbcType="DECIMAL" property="qtyScrapped" />
-    <result column="QTY_HISTORICAL_MIN" jdbcType="DECIMAL" property="qtyHistoricalMin" />
-    <result column="QTY_HISTORICAL_MAX" jdbcType="DECIMAL" property="qtyHistoricalMax" />
-    <result column="ITEM_BO" jdbcType="VARCHAR" property="itemBo" />
-    <result column="PRIORITY" jdbcType="DECIMAL" property="priority" />
-    <result column="LOCATION" jdbcType="VARCHAR" property="location" />
-    <result column="RMA_MAX_TIMES_PROCESSED" jdbcType="DECIMAL" property="rmaMaxTimesProcessed" />
-    <result column="LCC_BO" jdbcType="VARCHAR" property="lccBo" />
-    <result column="ORIGINAL_STATUS_BO" jdbcType="VARCHAR" property="originalStatusBo" />
-    <result column="QTY_MULT_PERFORMED" jdbcType="VARCHAR" property="qtyMultPerformed" />
-    <result column="ACTUAL_COMP_DATE" jdbcType="TIMESTAMP" property="actualCompDate" />
-    <result column="PREV_SITE" jdbcType="VARCHAR" property="prevSite" />
-    <result column="ORIGINAL_TRANSFER_KEY" jdbcType="VARCHAR" property="originalTransferKey" />
-    <result column="IMMEDIATE_ARCHIVE" jdbcType="VARCHAR" property="immediateArchive" />
-    <result column="TRANSFER_DATETIME" jdbcType="TIMESTAMP" property="transferDatetime" />
-    <result column="TRANSFER_USER" jdbcType="VARCHAR" property="transferUser" />
-    <result column="SN_DONE" jdbcType="VARCHAR" property="snDone" />
-    <result column="AIN_EQUIPMENT_ID" jdbcType="VARCHAR" property="ainEquipmentId" />
-    <result column="CREATED_DATE_TIME" jdbcType="TIMESTAMP" property="createdDateTime" />
-    <result column="MODIFIED_DATE_TIME" jdbcType="TIMESTAMP" property="modifiedDateTime" />
-    <result column="PARTITION_DATE" jdbcType="TIMESTAMP" property="partitionDate" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="com.liy.generator.entity.Sfc">
+        <result column="HANDLE" jdbcType="VARCHAR" property="handle"/>
+        <result column="CHANGE_STAMP" jdbcType="DECIMAL" property="changeStamp"/>
+        <result column="SITE" jdbcType="VARCHAR" property="site"/>
+        <result column="SFC" jdbcType="VARCHAR" property="sfc"/>
+        <result column="STATUS_BO" jdbcType="VARCHAR" property="statusBo"/>
+        <result column="SHOP_ORDER_BO" jdbcType="VARCHAR" property="shopOrderBo"/>
+        <result column="QTY" jdbcType="DECIMAL" property="qty"/>
+        <result column="QTY_DONE" jdbcType="DECIMAL" property="qtyDone"/>
+        <result column="QTY_SCRAPPED" jdbcType="DECIMAL" property="qtyScrapped"/>
+        <result column="QTY_HISTORICAL_MIN" jdbcType="DECIMAL" property="qtyHistoricalMin"/>
+        <result column="QTY_HISTORICAL_MAX" jdbcType="DECIMAL" property="qtyHistoricalMax"/>
+        <result column="ITEM_BO" jdbcType="VARCHAR" property="itemBo"/>
+        <result column="PRIORITY" jdbcType="DECIMAL" property="priority"/>
+        <result column="LOCATION" jdbcType="VARCHAR" property="location"/>
+        <result column="RMA_MAX_TIMES_PROCESSED" jdbcType="DECIMAL" property="rmaMaxTimesProcessed"/>
+        <result column="LCC_BO" jdbcType="VARCHAR" property="lccBo"/>
+        <result column="ORIGINAL_STATUS_BO" jdbcType="VARCHAR" property="originalStatusBo"/>
+        <result column="QTY_MULT_PERFORMED" jdbcType="VARCHAR" property="qtyMultPerformed"/>
+        <result column="ACTUAL_COMP_DATE" jdbcType="TIMESTAMP" property="actualCompDate"/>
+        <result column="PREV_SITE" jdbcType="VARCHAR" property="prevSite"/>
+        <result column="ORIGINAL_TRANSFER_KEY" jdbcType="VARCHAR" property="originalTransferKey"/>
+        <result column="IMMEDIATE_ARCHIVE" jdbcType="VARCHAR" property="immediateArchive"/>
+        <result column="TRANSFER_DATETIME" jdbcType="TIMESTAMP" property="transferDatetime"/>
+        <result column="TRANSFER_USER" jdbcType="VARCHAR" property="transferUser"/>
+        <result column="SN_DONE" jdbcType="VARCHAR" property="snDone"/>
+        <result column="AIN_EQUIPMENT_ID" jdbcType="VARCHAR" property="ainEquipmentId"/>
+        <result column="CREATED_DATE_TIME" jdbcType="TIMESTAMP" property="createdDateTime"/>
+        <result column="MODIFIED_DATE_TIME" jdbcType="TIMESTAMP" property="modifiedDateTime"/>
+        <result column="PARTITION_DATE" jdbcType="TIMESTAMP" property="partitionDate"/>
+        <result column="row" jdbcType="DECIMAL" property="row"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Example_Where_Clause_Page">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        HANDLE, CHANGE_STAMP, SITE, SFC, STATUS_BO, SHOP_ORDER_BO, QTY, QTY_DONE, QTY_SCRAPPED,
+        QTY_HISTORICAL_MIN, QTY_HISTORICAL_MAX, ITEM_BO, PRIORITY, LOCATION, RMA_MAX_TIMES_PROCESSED,
+        LCC_BO, ORIGINAL_STATUS_BO, QTY_MULT_PERFORMED, ACTUAL_COMP_DATE, PREV_SITE, ORIGINAL_TRANSFER_KEY,
+        IMMEDIATE_ARCHIVE, TRANSFER_DATETIME, TRANSFER_USER, SN_DONE, AIN_EQUIPMENT_ID, CREATED_DATE_TIME,
+        MODIFIED_DATE_TIME, PARTITION_DATE
+    </sql>
+    <select id="selectByExample" parameterType="com.liy.generator.entity.SfcExample" resultType="java.lang.Integer">
+        select
+        count(1)
+        from SFC
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    HANDLE, CHANGE_STAMP, SITE, SFC, STATUS_BO, SHOP_ORDER_BO, QTY, QTY_DONE, QTY_SCRAPPED, 
-    QTY_HISTORICAL_MIN, QTY_HISTORICAL_MAX, ITEM_BO, PRIORITY, LOCATION, RMA_MAX_TIMES_PROCESSED, 
-    LCC_BO, ORIGINAL_STATUS_BO, QTY_MULT_PERFORMED, ACTUAL_COMP_DATE, PREV_SITE, ORIGINAL_TRANSFER_KEY, 
-    IMMEDIATE_ARCHIVE, TRANSFER_DATETIME, TRANSFER_USER, SN_DONE, AIN_EQUIPMENT_ID, CREATED_DATE_TIME, 
-    MODIFIED_DATE_TIME, PARTITION_DATE
-  </sql>
-  <select id="selectByExample" parameterType="com.liy.generator.entity.SfcExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from SFC
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <delete id="deleteByExample" parameterType="com.liy.generator.entity.SfcExample">
-    delete from SFC
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.liy.generator.entity.Sfc">
-    insert into SFC (HANDLE, CHANGE_STAMP, SITE, 
-      SFC, STATUS_BO, SHOP_ORDER_BO, 
-      QTY, QTY_DONE, QTY_SCRAPPED, 
-      QTY_HISTORICAL_MIN, QTY_HISTORICAL_MAX, ITEM_BO, 
-      PRIORITY, LOCATION, RMA_MAX_TIMES_PROCESSED, 
-      LCC_BO, ORIGINAL_STATUS_BO, QTY_MULT_PERFORMED, 
-      ACTUAL_COMP_DATE, PREV_SITE, ORIGINAL_TRANSFER_KEY, 
-      IMMEDIATE_ARCHIVE, TRANSFER_DATETIME, 
-      TRANSFER_USER, SN_DONE, AIN_EQUIPMENT_ID, 
-      CREATED_DATE_TIME, MODIFIED_DATE_TIME, 
-      PARTITION_DATE)
-    values (#{handle,jdbcType=VARCHAR}, #{changeStamp,jdbcType=DECIMAL}, #{site,jdbcType=VARCHAR}, 
-      #{sfc,jdbcType=VARCHAR}, #{statusBo,jdbcType=VARCHAR}, #{shopOrderBo,jdbcType=VARCHAR}, 
-      #{qty,jdbcType=DECIMAL}, #{qtyDone,jdbcType=DECIMAL}, #{qtyScrapped,jdbcType=DECIMAL}, 
-      #{qtyHistoricalMin,jdbcType=DECIMAL}, #{qtyHistoricalMax,jdbcType=DECIMAL}, #{itemBo,jdbcType=VARCHAR}, 
-      #{priority,jdbcType=DECIMAL}, #{location,jdbcType=VARCHAR}, #{rmaMaxTimesProcessed,jdbcType=DECIMAL}, 
-      #{lccBo,jdbcType=VARCHAR}, #{originalStatusBo,jdbcType=VARCHAR}, #{qtyMultPerformed,jdbcType=VARCHAR}, 
-      #{actualCompDate,jdbcType=TIMESTAMP}, #{prevSite,jdbcType=VARCHAR}, #{originalTransferKey,jdbcType=VARCHAR}, 
-      #{immediateArchive,jdbcType=VARCHAR}, #{transferDatetime,jdbcType=TIMESTAMP}, 
-      #{transferUser,jdbcType=VARCHAR}, #{snDone,jdbcType=VARCHAR}, #{ainEquipmentId,jdbcType=VARCHAR}, 
-      #{createdDateTime,jdbcType=TIMESTAMP}, #{modifiedDateTime,jdbcType=TIMESTAMP}, 
-      #{partitionDate,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.liy.generator.entity.Sfc">
-    insert into SFC
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="handle != null">
-        HANDLE,
-      </if>
-      <if test="changeStamp != null">
-        CHANGE_STAMP,
-      </if>
-      <if test="site != null">
-        SITE,
-      </if>
-      <if test="sfc != null">
-        SFC,
-      </if>
-      <if test="statusBo != null">
-        STATUS_BO,
-      </if>
-      <if test="shopOrderBo != null">
-        SHOP_ORDER_BO,
-      </if>
-      <if test="qty != null">
-        QTY,
-      </if>
-      <if test="qtyDone != null">
-        QTY_DONE,
-      </if>
-      <if test="qtyScrapped != null">
-        QTY_SCRAPPED,
-      </if>
-      <if test="qtyHistoricalMin != null">
-        QTY_HISTORICAL_MIN,
-      </if>
-      <if test="qtyHistoricalMax != null">
-        QTY_HISTORICAL_MAX,
-      </if>
-      <if test="itemBo != null">
-        ITEM_BO,
-      </if>
-      <if test="priority != null">
-        PRIORITY,
-      </if>
-      <if test="location != null">
-        LOCATION,
-      </if>
-      <if test="rmaMaxTimesProcessed != null">
-        RMA_MAX_TIMES_PROCESSED,
-      </if>
-      <if test="lccBo != null">
-        LCC_BO,
-      </if>
-      <if test="originalStatusBo != null">
-        ORIGINAL_STATUS_BO,
-      </if>
-      <if test="qtyMultPerformed != null">
-        QTY_MULT_PERFORMED,
-      </if>
-      <if test="actualCompDate != null">
-        ACTUAL_COMP_DATE,
-      </if>
-      <if test="prevSite != null">
-        PREV_SITE,
-      </if>
-      <if test="originalTransferKey != null">
-        ORIGINAL_TRANSFER_KEY,
-      </if>
-      <if test="immediateArchive != null">
-        IMMEDIATE_ARCHIVE,
-      </if>
-      <if test="transferDatetime != null">
-        TRANSFER_DATETIME,
-      </if>
-      <if test="transferUser != null">
-        TRANSFER_USER,
-      </if>
-      <if test="snDone != null">
-        SN_DONE,
-      </if>
-      <if test="ainEquipmentId != null">
-        AIN_EQUIPMENT_ID,
-      </if>
-      <if test="createdDateTime != null">
-        CREATED_DATE_TIME,
-      </if>
-      <if test="modifiedDateTime != null">
-        MODIFIED_DATE_TIME,
-      </if>
-      <if test="partitionDate != null">
-        PARTITION_DATE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="handle != null">
-        #{handle,jdbcType=VARCHAR},
-      </if>
-      <if test="changeStamp != null">
-        #{changeStamp,jdbcType=DECIMAL},
-      </if>
-      <if test="site != null">
-        #{site,jdbcType=VARCHAR},
-      </if>
-      <if test="sfc != null">
-        #{sfc,jdbcType=VARCHAR},
-      </if>
-      <if test="statusBo != null">
-        #{statusBo,jdbcType=VARCHAR},
-      </if>
-      <if test="shopOrderBo != null">
-        #{shopOrderBo,jdbcType=VARCHAR},
-      </if>
-      <if test="qty != null">
-        #{qty,jdbcType=DECIMAL},
-      </if>
-      <if test="qtyDone != null">
-        #{qtyDone,jdbcType=DECIMAL},
-      </if>
-      <if test="qtyScrapped != null">
-        #{qtyScrapped,jdbcType=DECIMAL},
-      </if>
-      <if test="qtyHistoricalMin != null">
-        #{qtyHistoricalMin,jdbcType=DECIMAL},
-      </if>
-      <if test="qtyHistoricalMax != null">
-        #{qtyHistoricalMax,jdbcType=DECIMAL},
-      </if>
-      <if test="itemBo != null">
-        #{itemBo,jdbcType=VARCHAR},
-      </if>
-      <if test="priority != null">
-        #{priority,jdbcType=DECIMAL},
-      </if>
-      <if test="location != null">
-        #{location,jdbcType=VARCHAR},
-      </if>
-      <if test="rmaMaxTimesProcessed != null">
-        #{rmaMaxTimesProcessed,jdbcType=DECIMAL},
-      </if>
-      <if test="lccBo != null">
-        #{lccBo,jdbcType=VARCHAR},
-      </if>
-      <if test="originalStatusBo != null">
-        #{originalStatusBo,jdbcType=VARCHAR},
-      </if>
-      <if test="qtyMultPerformed != null">
-        #{qtyMultPerformed,jdbcType=VARCHAR},
-      </if>
-      <if test="actualCompDate != null">
-        #{actualCompDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="prevSite != null">
-        #{prevSite,jdbcType=VARCHAR},
-      </if>
-      <if test="originalTransferKey != null">
-        #{originalTransferKey,jdbcType=VARCHAR},
-      </if>
-      <if test="immediateArchive != null">
-        #{immediateArchive,jdbcType=VARCHAR},
-      </if>
-      <if test="transferDatetime != null">
-        #{transferDatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="transferUser != null">
-        #{transferUser,jdbcType=VARCHAR},
-      </if>
-      <if test="snDone != null">
-        #{snDone,jdbcType=VARCHAR},
-      </if>
-      <if test="ainEquipmentId != null">
-        #{ainEquipmentId,jdbcType=VARCHAR},
-      </if>
-      <if test="createdDateTime != null">
-        #{createdDateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="modifiedDateTime != null">
-        #{modifiedDateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="partitionDate != null">
-        #{partitionDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.liy.generator.entity.SfcExample" resultType="java.lang.Long">
-    select count(*) from SFC
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update SFC
-    <set>
-      <if test="record.handle != null">
-        HANDLE = #{record.handle,jdbcType=VARCHAR},
-      </if>
-      <if test="record.changeStamp != null">
-        CHANGE_STAMP = #{record.changeStamp,jdbcType=DECIMAL},
-      </if>
-      <if test="record.site != null">
-        SITE = #{record.site,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sfc != null">
-        SFC = #{record.sfc,jdbcType=VARCHAR},
-      </if>
-      <if test="record.statusBo != null">
-        STATUS_BO = #{record.statusBo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shopOrderBo != null">
-        SHOP_ORDER_BO = #{record.shopOrderBo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.qty != null">
-        QTY = #{record.qty,jdbcType=DECIMAL},
-      </if>
-      <if test="record.qtyDone != null">
-        QTY_DONE = #{record.qtyDone,jdbcType=DECIMAL},
-      </if>
-      <if test="record.qtyScrapped != null">
-        QTY_SCRAPPED = #{record.qtyScrapped,jdbcType=DECIMAL},
-      </if>
-      <if test="record.qtyHistoricalMin != null">
-        QTY_HISTORICAL_MIN = #{record.qtyHistoricalMin,jdbcType=DECIMAL},
-      </if>
-      <if test="record.qtyHistoricalMax != null">
-        QTY_HISTORICAL_MAX = #{record.qtyHistoricalMax,jdbcType=DECIMAL},
-      </if>
-      <if test="record.itemBo != null">
-        ITEM_BO = #{record.itemBo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.priority != null">
-        PRIORITY = #{record.priority,jdbcType=DECIMAL},
-      </if>
-      <if test="record.location != null">
-        LOCATION = #{record.location,jdbcType=VARCHAR},
-      </if>
-      <if test="record.rmaMaxTimesProcessed != null">
-        RMA_MAX_TIMES_PROCESSED = #{record.rmaMaxTimesProcessed,jdbcType=DECIMAL},
-      </if>
-      <if test="record.lccBo != null">
-        LCC_BO = #{record.lccBo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.originalStatusBo != null">
-        ORIGINAL_STATUS_BO = #{record.originalStatusBo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.qtyMultPerformed != null">
-        QTY_MULT_PERFORMED = #{record.qtyMultPerformed,jdbcType=VARCHAR},
-      </if>
-      <if test="record.actualCompDate != null">
-        ACTUAL_COMP_DATE = #{record.actualCompDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.prevSite != null">
-        PREV_SITE = #{record.prevSite,jdbcType=VARCHAR},
-      </if>
-      <if test="record.originalTransferKey != null">
-        ORIGINAL_TRANSFER_KEY = #{record.originalTransferKey,jdbcType=VARCHAR},
-      </if>
-      <if test="record.immediateArchive != null">
-        IMMEDIATE_ARCHIVE = #{record.immediateArchive,jdbcType=VARCHAR},
-      </if>
-      <if test="record.transferDatetime != null">
-        TRANSFER_DATETIME = #{record.transferDatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.transferUser != null">
-        TRANSFER_USER = #{record.transferUser,jdbcType=VARCHAR},
-      </if>
-      <if test="record.snDone != null">
-        SN_DONE = #{record.snDone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.ainEquipmentId != null">
-        AIN_EQUIPMENT_ID = #{record.ainEquipmentId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createdDateTime != null">
-        CREATED_DATE_TIME = #{record.createdDateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.modifiedDateTime != null">
-        MODIFIED_DATE_TIME = #{record.modifiedDateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.partitionDate != null">
-        PARTITION_DATE = #{record.partitionDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update SFC
-    set HANDLE = #{record.handle,jdbcType=VARCHAR},
-      CHANGE_STAMP = #{record.changeStamp,jdbcType=DECIMAL},
-      SITE = #{record.site,jdbcType=VARCHAR},
-      SFC = #{record.sfc,jdbcType=VARCHAR},
-      STATUS_BO = #{record.statusBo,jdbcType=VARCHAR},
-      SHOP_ORDER_BO = #{record.shopOrderBo,jdbcType=VARCHAR},
-      QTY = #{record.qty,jdbcType=DECIMAL},
-      QTY_DONE = #{record.qtyDone,jdbcType=DECIMAL},
-      QTY_SCRAPPED = #{record.qtyScrapped,jdbcType=DECIMAL},
-      QTY_HISTORICAL_MIN = #{record.qtyHistoricalMin,jdbcType=DECIMAL},
-      QTY_HISTORICAL_MAX = #{record.qtyHistoricalMax,jdbcType=DECIMAL},
-      ITEM_BO = #{record.itemBo,jdbcType=VARCHAR},
-      PRIORITY = #{record.priority,jdbcType=DECIMAL},
-      LOCATION = #{record.location,jdbcType=VARCHAR},
-      RMA_MAX_TIMES_PROCESSED = #{record.rmaMaxTimesProcessed,jdbcType=DECIMAL},
-      LCC_BO = #{record.lccBo,jdbcType=VARCHAR},
-      ORIGINAL_STATUS_BO = #{record.originalStatusBo,jdbcType=VARCHAR},
-      QTY_MULT_PERFORMED = #{record.qtyMultPerformed,jdbcType=VARCHAR},
-      ACTUAL_COMP_DATE = #{record.actualCompDate,jdbcType=TIMESTAMP},
-      PREV_SITE = #{record.prevSite,jdbcType=VARCHAR},
-      ORIGINAL_TRANSFER_KEY = #{record.originalTransferKey,jdbcType=VARCHAR},
-      IMMEDIATE_ARCHIVE = #{record.immediateArchive,jdbcType=VARCHAR},
-      TRANSFER_DATETIME = #{record.transferDatetime,jdbcType=TIMESTAMP},
-      TRANSFER_USER = #{record.transferUser,jdbcType=VARCHAR},
-      SN_DONE = #{record.snDone,jdbcType=VARCHAR},
-      AIN_EQUIPMENT_ID = #{record.ainEquipmentId,jdbcType=VARCHAR},
-      CREATED_DATE_TIME = #{record.createdDateTime,jdbcType=TIMESTAMP},
-      MODIFIED_DATE_TIME = #{record.modifiedDateTime,jdbcType=TIMESTAMP},
-      PARTITION_DATE = #{record.partitionDate,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExamplePage" parameterType="com.liy.generator.entity.SfcExample" resultMap="BaseResultMap">
+        select * from (
+         select * from (
+          select
+           ROW_NUMBER() over (order by sfc) row,
+           <include refid="Base_Column_List"/>
+           from SFC
+           <if test="_parameter != null">
+               <include refid="Example_Where_Clause_Page"/>
+           </if>
+           <if test="example.orderByClause != null">
+               order by ${orderByClause}
+           </if>
+         ) a
+         where a.row <![CDATA[<]]> ${lastRow}
+        ) b
+        where b.row <![CDATA[>=]]> ${firstRow}
+    </select>
 </mapper>

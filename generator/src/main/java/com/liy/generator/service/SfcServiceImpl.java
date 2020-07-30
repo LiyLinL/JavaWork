@@ -14,7 +14,12 @@ public class SfcServiceImpl implements SfcService {
     private SfcRepository sfcRepository;
 
     @Override
-    public List<Sfc> selectSfc() {
-        return sfcRepository.selectSfc();
+    public List<Sfc> selectSfc( String site, String shopOrder, int firstRow, int lastRow ) {
+        return sfcRepository.selectSfc(site, shopOrder, firstRow, lastRow);
+    }
+
+    @Override
+    public int cnt( String site, String order ) {
+        return sfcRepository.cnt(site, order);
     }
 }

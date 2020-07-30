@@ -7,17 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface SfcMapper {
-    long countByExample(SfcExample example);
 
-    int deleteByExample(SfcExample example);
+    int selectByExample( SfcExample example );
 
-    int insert(Sfc record);
-
-    int insertSelective(Sfc record);
-
-    List<Sfc> selectByExample(SfcExample example);
-
-    int updateByExampleSelective(@Param("record") Sfc record, @Param("example") SfcExample example);
-
-    int updateByExample(@Param("record") Sfc record, @Param("example") SfcExample example);
+    List<Sfc> selectByExamplePage( @Param("example") SfcExample example, @Param("firstRow") int firstRow, @Param("lastRow") int lastRow );
 }

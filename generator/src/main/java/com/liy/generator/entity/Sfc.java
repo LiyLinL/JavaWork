@@ -62,6 +62,8 @@ public class Sfc {
 
     private Date partitionDate;
 
+    private BigDecimal row;
+
     public String getHandle() {
         return handle;
     }
@@ -292,5 +294,13 @@ public class Sfc {
 
     public void setPartitionDate(Date partitionDate) {
         this.partitionDate = partitionDate;
+    }
+
+    public BigDecimal getRow() {
+        return row;
+    }
+
+    public void setRow( BigDecimal row ) {
+        this.row = row;
     }
 }
