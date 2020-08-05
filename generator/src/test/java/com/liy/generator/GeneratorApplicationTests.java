@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -34,6 +35,7 @@ import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@EnableAsync
 public class GeneratorApplicationTests {
 
     @Autowired
@@ -203,8 +205,16 @@ public class GeneratorApplicationTests {
     }
 
     @Test
-    public void jms() throws InterruptedException {
-        System.out.println(jmsService.sendMessage("Q", "Test:" + UUID.randomUUID().toString().replaceAll("-", "")));
+    public void jms() throws InterruptedException, IOException {
+        Jackson jackson = new Jackson();
+        jackson.setAlways("A");
+        jackson.setSome("B");
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(jackson);
+
+        Object obj = jmsService.sendMessage("Q", json);
+        jackson = objectMapper.readValue((String) obj, Jackson.class);
+        System.out.println(jackson.getAlways());
     }
 
     @Test

@@ -13,8 +13,16 @@ sap.ui.define(['sap/ui/core/mvc/Controller'], function (Controller) {
         })
       );
 
+
       var oData = this.getView().getModel().getData();
       var api = 'http://localhost:90/sfc?site=1000&order=ShopOrderBO:1000,P_2020041502';
+      // var i = 0;
+      // this.intervalHandle = setInterval(function () {
+      //   oData.table.push({
+      //     sfc: i++
+      //   });
+      //   me.getView().getModel().refresh();
+      // }, 3000);
       // 取得總數
       $.ajax({
         url: 'http://localhost:90/sfc/cnt?site=1000&order=ShopOrderBO:1000,P_2020041502',
