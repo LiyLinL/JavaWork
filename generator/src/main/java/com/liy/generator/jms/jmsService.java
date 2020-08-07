@@ -27,7 +27,8 @@ public class jmsService {
         JmsMessagingTemplate jmsMessagingTemplate = new JmsMessagingTemplate();
         JmsTemplate jmsTemplate = new JmsTemplate();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-        connectionFactory.setBrokerURL("tcp://localhost:61616");
+        String url = "failover://(tcp://localhost:61616,tcp://localhost:61626)?randomize=false";
+        connectionFactory.setBrokerURL(url);
         connectionFactory.setPassword("admin");
         connectionFactory.setUserName("admin");
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(connectionFactory);

@@ -6,6 +6,9 @@
     xmlns:sap.ui.core.mvc="sap.ui.core.mvc">
     <Page title="Example" class="sapUiContentPadding">
         <content>
+            <FlexBox alignItems="Start">
+                <Input id="inp" showSuggestion="true"></Input>
+            </FlexBox>
             <FlexBox alignItems="Start" justifyContent="Start">
                 <t:Table id="table" rows="{/table}" selectionMode="None" showNoData="true" visibleRowCount="10" width="50%">
                     <t:columns>

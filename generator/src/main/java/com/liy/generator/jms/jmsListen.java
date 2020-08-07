@@ -14,10 +14,11 @@ public class jmsListen {
     @Bean
     public JmsListenerContainerFactory<?> jmsListenerContainerQueue() {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+        String url = "failover://(tcp://localhost:61616,tcp://localhost:61626)?randomize=false";
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-        connectionFactory.setBrokerURL("tcp://localhost:61616");
-        connectionFactory.setPassword("admin");
         connectionFactory.setUserName("admin");
+        connectionFactory.setPassword("admin");
+        connectionFactory.setBrokerURL(url);
         factory.setConnectionFactory(connectionFactory);
         return factory;
     }
