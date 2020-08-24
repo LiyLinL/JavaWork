@@ -3,6 +3,7 @@ target/
 *.cmd
 mvnw
 .mvn
+**/target/**
 !**/src/main/**
 !**/src/test/**
 !**/resources/**
