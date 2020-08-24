@@ -1,0 +1,10 @@
+<mvc:View controllerName="gen.app.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true" autoFocus="false">
+    <App id="app">
+        <pages>
+            <Page showHeader="false">
+            </Page>
+        </pages>
+    </App>
+</mvc:View>

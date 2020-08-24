@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:f="sap.ui.layout.form"
+   xmlns:core="sap.ui.core">
+   <Dialog id="Create" title="Title">
+      <beginButton>
+         <Button text="OK" type="Emphasized" press="handleDialogOkButton"/>
+      </beginButton>
+      <endButton>
+         <Button text="Cancel" press="handleDialogCancelButton"/>
+      </endButton>
+      <l:VerticalLayout class="sapUiContentPadding" width="100%">
+         <f:SimpleForm id="appointmentCreateForm" editable="true" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+            <Label text="Title" labelFor="appTitle"/>
+            <Input id="appTitle" maxLength="255"/>
+            <Label text="Additional information" labelFor="inputInfo"/>
+            <Input id="moreInfo" maxLength="255"/>
+            <Label text="From" labelFor="DTPStartDate"/>
+            <DateTimePicker id="DTPStartDate" required="true" visible="{= !${allDay>/allDay}}" change="handleDateTimePickerChange"/>
+            <Label text="To" labelFor="DTPEndDate"/>
+            <DateTimePicker id="DTPEndDate" required="true" visible="{= !${allDay>/allDay}}" change="handleDateTimePickerChange"/>
+            <Label text="Color" labelFor="typeInfo"/>
+            <Select id="typeInfo" items="{/typeItem}">
+               <core:Item key="{type}" text="{text}" />
+            </Select>
+         </f:SimpleForm>
+      </l:VerticalLayout>
+   </Dialog>
+</core:FragmentDefinition>
