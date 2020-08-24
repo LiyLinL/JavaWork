@@ -32,4 +32,4 @@ rebel.xml
 /nbdist/
 /.nb-gradle/
 build/
-/src/main/resources/static/sapui5-1.60/
+/src/main/resources/static/sapui5-1.71/resources/
