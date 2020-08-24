@@ -1,4 +1,4 @@
-<mvc:View controllerName="yo.view.calendar.calendar"
+<mvc:View controllerName="gen.view.calendar.calendar"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc"
    xmlns:core="sap.ui.core"

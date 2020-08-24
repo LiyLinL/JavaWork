@@ -1,12 +1,12 @@
 sap.ui.define([
-   'yo/core/BaseController',
+   'gen/core/BaseController',
    'sap/ui/model/json/JSONModel',
    'sap/m/MessageBox',
-   'yo/view/calendar/Create',
-   'yo/view/calendar/Detail'
+   'gen/view/calendar/Create',
+   'gen/view/calendar/Detail'
 ], function (BaseController, JSONModel, MessageBox, Create, Detail) {
    'use strict';
-   return BaseController.extend('yo.view.calendar.calendar', {
+   return BaseController.extend('gen.view.calendar.calendar', {
       onInit: function (oEvent) {
          var oModel = new JSONModel();
          oModel.setData({

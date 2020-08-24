@@ -5,7 +5,7 @@ sap.ui.define([
    'sap/ui/model/Filter'
 ], function (Fragment, Object, JSONModel, Filter) {
    "use strict";
-   return Object.extend("yo.view.calendar.Create", {
+   return Object.extend("gen.view.calendar.Create", {
       // rackDialog: function (oEvent) {
       //     var me = this,
       //         oView = this.getView(),
@@ -37,7 +37,7 @@ sap.ui.define([
 
          if (!me._oDialog) {
             Fragment.load({
-               name: "yo.view.calendar.Create",
+               name: "gen.view.calendar.Create",
                controller: me
             }).then(function (oDialog) {
                me._oDialog = oDialog;
