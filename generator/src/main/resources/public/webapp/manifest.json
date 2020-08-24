@@ -44,7 +44,12 @@
             }
         },
         "resources": {
-            "css": []
+            "js": [],
+            "css": [{
+                "uri": "css/dhtmlxscheduler_material.css"
+            }, {
+                "uri": "style.css"
+            }]
         },
         "routing": {
             "config": {

@@ -15,8 +15,6 @@ sap.ui.define([
         init: function () {
             var me = this;
 
-            jQuery.sap.includeStyleSheet(jQuery.sap.getModulePath("gen") + "/style.css?_" + new Date().getTime());
-            jQuery.sap.includeStyleSheet(jQuery.sap.getModulePath("gen") + "/css/dhtmlxscheduler_material.css?_" + new Date().getTime());
             UIComponent.prototype.init.apply(this, arguments);
             me.getRouter().initialize();
         }
