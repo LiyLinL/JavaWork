@@ -56,7 +56,7 @@
 		}
       </html:style>
 
-      <html:div id="scheduler_here" class="dhx_cal_container mySuper">
+      <!-- <html:div id="scheduler_here" class="dhx_cal_container mySuper">
          <html:div class="dhx_cal_navline">
             <html:div class="dhx_cal_prev_button"></html:div>
             <html:div class="dhx_cal_next_button"></html:div>
@@ -71,7 +71,7 @@
          </html:div>
          <html:div class="dhx_cal_data">
          </html:div>
-      </html:div>
+      </html:div> -->
 
       <VBox class="sapUiSmallMargin">
          <SinglePlanningCalendar id="SPC1" title= "My Calendar" startDate="{path: '/startDate'}" appointments="{path: '/appointments'}" stickyMode="All" appointmentSelect="handleAppointmentSelect" appointmentDrop="handleAppointmentDrop" appointmentResize="handleAppointmentResize" appointmentCreate="handleAppointmentCreateDnD" enableAppointmentsDragAndDrop="true" enableAppointmentsResize="true" enableAppointmentsCreate="true">
@@ -85,7 +85,7 @@
                <SinglePlanningCalendarMonthView key="MonthView" title="Month" />
             </views>
             <appointments>
-               <unified:CalendarAppointment title= "{title}" text= "{text}" type= "{type}" icon= "{icon}" startDate= "{startDate}" endDate= "{endDate}">
+               <unified:CalendarAppointment title= "{title}" text= "{text}" icon= "{icon}" startDate= "{startDate}" endDate= "{endDate}" color="{color}">
                </unified:CalendarAppointment>
             </appointments>
          </SinglePlanningCalendar>

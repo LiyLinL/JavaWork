@@ -22,22 +22,26 @@ sap.ui.define([
                appointments: [{
                   title: "Meet John Miller",
                   type: "Type10",
+                  color: "#8600FF",
                   startDate: new Date("2020", "7", "8", "1", "0"),
                   endDate: new Date("2020", "7", "8", "2", "0")
                }, {
                   title: "Discussion of the plan",
                   type: "Type03",
+                  color: "#FF60AF",
                   startDate: new Date("2020", "7", "11", "6", "0"),
                   endDate: new Date("2020", "7", "11", "7", "9")
                }, {
                   title: "Lunch",
                   text: "canteen",
                   type: "Type02",
+                  color: "#FF60AF",
                   startDate: new Date("2020", "7", "23", "7", "0"),
                   endDate: new Date("2020", "7", "23", "8", "0")
                }, {
                   title: "Discussion of the plan",
                   type: "Type04",
+                  color: "#96FED1",
                   startDate: new Date("2020", "7", "15", "6", "0"),
                   endDate: new Date("2020", "7", "15", "7", "9")
                }],
@@ -75,7 +79,7 @@ sap.ui.define([
                   }
                ]
             }));
-            this.setEventData();
+            // this.setEventData();
          },
          setEventData: function () {
             var me = this,
@@ -227,8 +231,8 @@ sap.ui.define([
          },
          onAfterRendering: function () {
             // init
-            this.setView();
-            scheduler.init('__xmlview1--scheduler_here', new Date(2020, 7, 20), "week");
+            // this.setView();
+            // scheduler.init('__xmlview1--scheduler_here', new Date(2020, 7, 20), "week");
          },
          // 創建按鈕
          handleAppointmentCreate: function () {

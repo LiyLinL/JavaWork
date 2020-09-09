@@ -1,9 +1,9 @@
-<sap.ui.core.mvc:View controllerName="gen.view.Main"
+<sap.ui.core.mvc:View controllerName="gen.view.main.Main"
     xmlns="sap.m"
     xmlns:t="sap.ui.table"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.f"
-    xmlns:sap.ui.core.mvc="sap.ui.core.mvc" displayBlock="true" autoFocus="false">
+    xmlns:sap.ui.core.mvc="sap.ui.core.mvc" displayBlock="true">
     <Page id="me" title="Example" class="sapUiContentPadding">
         <content>
             <FlexBox alignItems="Start">
@@ -25,7 +25,8 @@
                             </t:template>
                         </t:Column>
                         <t:Column>
-                            <Label text="Item"/>
+                            <!-- <Label text="Item"/> -->
+                            <CheckBox text="Option" />
                             <t:template>
                                 <Text text="{item}"/>
                             </t:template>

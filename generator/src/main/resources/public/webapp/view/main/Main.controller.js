@@ -1,6 +1,6 @@
 sap.ui.define(['sap/ui/core/mvc/Controller'], function (Controller) {
   'use strict';
-  return Controller.extend('gen.view.Main', {
+  return Controller.extend('gen.view.main.Main', {
     onInit: function () {
       var me = this;
       var oView = this.getView();
