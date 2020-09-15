@@ -4,7 +4,7 @@
 
 ---
 ## Spring boot
-see [generator](https://github.com/LiyLinL/JavaWork/tree/master/generator)
+test [generator](https://github.com/LiyLinL/JavaWork/tree/master/generator)
 
 ---
 ## Java Scripts 
