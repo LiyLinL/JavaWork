@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liy.generator.entity.Jackson;
 import com.liy.generator.jms.jmsService;
+import com.liy.generator.service.WorkCenterServiceImpl;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.entity.StringEntity;
@@ -46,6 +47,9 @@ public class GeneratorApplicationTests {
 
     private MockMvc mvc;
     private MockHttpSession session;
+
+    @Autowired
+    private WorkCenterServiceImpl workCenterService;
 
     @Test
     public void goPath() {
@@ -227,5 +231,10 @@ public class GeneratorApplicationTests {
         String json = objectMapper.writeValueAsString(jackson);
         Map<String, String> map = objectMapper.readValue(json, new TypeReference<Map<String, String>>() {
         });
+    }
+
+    @Test
+    public void rerun() {
+        workCenterService.findResource();
     }
 }
