@@ -232,9 +232,4 @@ public class GeneratorApplicationTests {
         Map<String, String> map = objectMapper.readValue(json, new TypeReference<Map<String, String>>() {
         });
     }
-
-    @Test
-    public void rerun() {
-        workCenterService.findResource();
-    }
 }
