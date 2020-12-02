@@ -27,7 +27,8 @@ public class jmsService {
         JmsMessagingTemplate jmsMessagingTemplate = new JmsMessagingTemplate();
         JmsTemplate jmsTemplate = new JmsTemplate();
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
-        String url = "failover://(tcp://localhost:61616,tcp://localhost:61626)?randomize=false";
+//        String url = "failover://(tcp://localhost:61616,tcp://localhost:61626)?randomize=false";
+        String url = "failover://(tcp://192.168.137.242:61616)?randomize=false";
         connectionFactory.setBrokerURL(url);
         connectionFactory.setPassword("admin");
         connectionFactory.setUserName("admin");
