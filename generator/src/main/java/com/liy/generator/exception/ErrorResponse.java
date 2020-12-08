@@ -1,14 +1,17 @@
 package com.liy.generator.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class ErrorResponse {
     private String msg;
+
+    public ErrorResponse( String msg ) {
+        this.msg = msg;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg( String msg ) {
+        this.msg = msg;
+    }
 }
