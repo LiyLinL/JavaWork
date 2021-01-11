@@ -15,7 +15,7 @@ public class jmsListen {
     public JmsListenerContainerFactory<?> jmsListenerContainerQueue() {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
 //        String url = "failover://(tcp://192.168.137.242:61616,tcp://localhost:61636)?randomize=false&startupMaxReconnectAttempts=1&maxReconnectDelay=10000";
-        String url = "failover://(tcp://192.168.137.242:61616)?randomize=false&startupMaxReconnectAttempts=1&maxReconnectDelay=10000";
+        String url = "failover://(tcp://localhost:61626)?randomize=false&startupMaxReconnectAttempts=1&maxReconnectDelay=10000";
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         connectionFactory.setUserName("admin");
         connectionFactory.setPassword("admin");

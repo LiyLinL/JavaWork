@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liy.generator.entity.Jackson;
 import com.liy.generator.jms.jmsService;
 import com.liy.generator.service.WorkCenterServiceImpl;
+import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.entity.StringEntity;
@@ -30,6 +31,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.jms.Destination;
 import java.io.*;
 import java.net.URI;
 import java.util.*;
@@ -216,9 +218,15 @@ public class GeneratorApplicationTests {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(jackson);
 
-        Object obj = jmsService.sendMessage("Q", json);
-        jackson = objectMapper.readValue((String) obj, Jackson.class);
-        System.out.println(jackson.getAlways());
+        Destination destination1 = new ActiveMQQueue("test1");
+        jmsService.sendTemp(destination1, "AAAAAAAAAAA");
+//        jackson = objectMapper.readValue((String) obj, Jackson.class);
+//        System.out.println(jackson.getAlways());
+
+        Destination destination2 = new ActiveMQQueue("test2");
+        for (int i = 0; i < 10; i++) {
+            jmsService.sendTemp(destination2, "AAAAAAAAAAAAAA");
+        }
     }
 
     @Test
