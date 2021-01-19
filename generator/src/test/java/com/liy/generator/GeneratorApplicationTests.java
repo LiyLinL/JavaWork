@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liy.generator.entity.Jackson;
 import com.liy.generator.jms.jmsService;
-import com.liy.generator.service.WorkCenterServiceImpl;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
@@ -49,9 +48,6 @@ public class GeneratorApplicationTests {
 
     private MockMvc mvc;
     private MockHttpSession session;
-
-    @Autowired
-    private WorkCenterServiceImpl workCenterService;
 
     @Test
     public void goPath() {
