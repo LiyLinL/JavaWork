@@ -31,6 +31,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.jms.Destination;
+import javax.jms.JMSException;
 import java.io.*;
 import java.net.URI;
 import java.util.*;
@@ -207,22 +208,23 @@ public class GeneratorApplicationTests {
     }
 
     @Test
-    public void jms() throws InterruptedException, IOException {
-        Jackson jackson = new Jackson();
-        jackson.setAlways("A");
-        jackson.setSome("B");
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(jackson);
+    public void jms() throws InterruptedException, IOException, JMSException {
+//        Jackson jackson = new Jackson();
+//        jackson.setAlways("A");
+//        jackson.setSome("B");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String json = objectMapper.writeValueAsString(jackson);
 
         Destination destination1 = new ActiveMQQueue("test1");
-        jmsService.sendTemp(destination1, "AAAAAAAAAAA");
+        jmsService.sendMessage("lot.check.in.notice", "AAAAAAAAAAA");
+
 //        jackson = objectMapper.readValue((String) obj, Jackson.class);
 //        System.out.println(jackson.getAlways());
 
-        Destination destination2 = new ActiveMQQueue("test2");
-        for (int i = 0; i < 10; i++) {
-            jmsService.sendTemp(destination2, "AAAAAAAAAAAAAA");
-        }
+//        Destination destination2 = new ActiveMQQueue("test2");
+//        for (int i = 0; i < 10; i++) {
+//            jmsService.sendTemp(destination2, "AAAAAAAAAAAAAA");
+//        }
     }
 
     @Test
