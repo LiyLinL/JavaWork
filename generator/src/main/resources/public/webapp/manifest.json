@@ -65,23 +65,16 @@
                 "pattern": "Main:?req:",
                 "target": "Main"
             }, {
-                "name": "calendar",
-                "pattern": "calendar:?req:",
-                "target": "calendar"
-            }, {
-                "name": "single",
-                "pattern": "single:?req:",
-                "target": "single"
+                "name": "test",
+                "pattern": "test:?req:",
+                "target": "test"
             }],
             "targets": {
                 "Main": {
                     "viewName": "view.main.Main"
                 },
-                "calendar": {
-                    "viewName": "view.calendar.calendar"
-                },
-                "single": {
-                    "viewName": "view.single.single"
+                "test": {
+                    "viewName": "view.single.test"
                 }
             }
         }

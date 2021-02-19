@@ -4,8 +4,7 @@ sap.ui.define([
     "gen/utils/decimal.min",
     "gen/utils/moment",
     "gen/utils/excelJS.min",
-    "gen/utils/FileSaver",
-    "gen/utils/dhtmlxscheduler"
+    "gen/utils/FileSaver"
 ], function (UIComponent, BaseController) {
     "use strict";
     return UIComponent.extend("gen.Component", {
