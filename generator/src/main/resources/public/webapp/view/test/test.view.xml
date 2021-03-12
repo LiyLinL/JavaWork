@@ -1,0 +1,81 @@
+<mvc:View
+      controllerName="gen.view.test.test"
+      xmlns="sap.m"
+      xmlns:mvc="sap.ui.core.mvc"
+      xmlns:core="sap.ui.core"
+      xmlns:unified="sap.ui.unified"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+      xmlns:t="sap.ui.table"
+      xmlns:c="gen.view.lib">
+   <Page
+         class="sapUiSizeCompact"
+         title="T">
+      <headerContent>
+         <!-- <Button text="B" press="pressTest($event, '1')"> <dependents> <core:Fragment fragmentName="gen.view.dialog.Dialog" type="XML" /> </dependents> </Button> -->
+         <c:cI
+               newChange="test"
+               text="test"
+               value="111"
+               test="ttttt" />
+      </headerContent>
+      <c:cTable
+            id="table"
+            rows="{/table}"
+            selectionMode="None"
+            showNoData="true"
+            visibleRowCount="5"
+            width="20%"
+            class="sapUiTinyMargin"
+            enableCellFilter="true"
+            filter="testF"
+            showColumnVisibilityMenu="true"
+            rowActionCount="1">
+         <c:columns>
+            <t:Column
+                  id="s"
+                  sorted="true"
+                  sortProperty="seq"
+                  filterProperty="seq">
+               <Label text="Seq" />
+               <t:template>
+                  <Text text="{seq}" />
+               </t:template>
+            </t:Column>
+            <t:Column
+                  id="t"
+                  filterProperty="text">
+               <Label text="Text" />
+               <t:template>
+                  <Text text="{text}" />
+               </t:template>
+            </t:Column>
+            <t:Column hAlign="Center">
+               <Label text="Button" />
+               <t:template>
+                  <Button
+                        text="press"
+                        press="pressTest($event, '1')">
+                     <dependents>
+                        <core:Fragment
+                              fragmentName="gen.view.dialog.Dialog"
+                              type="XML" />
+                     </dependents>
+                  </Button>
+               </t:template>
+            </t:Column>
+         </c:columns>
+         <c:rowActionTemplate>
+            <t:RowAction>
+               <t:items>
+                  <t:RowActionItem
+                        text="Edit"
+                        icon="sap-icon://edit"
+                        type="Custom"
+                        press="actPress" />
+               </t:items>
+            </t:RowAction>
+         </c:rowActionTemplate>
+      </c:cTable>
+   </Page>
+</mvc:View>
